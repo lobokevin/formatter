@@ -1,0 +1,23 @@
+{
+  "name": "formatter",
+  "version": "0.0.1",
+  "description": "Format console results",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js secrets.js",
+    "dev" : "nodemon main.js secrets.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobokevin/formatter.git"
+  },
+  "author": "Kevin Lobo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lobokevin/formatter/issues"
+  },
+  "homepage": "https://github.com/lobokevin/formatter#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}

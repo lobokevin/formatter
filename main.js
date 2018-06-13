@@ -1,30 +1,32 @@
-const fs = require('fs');
-const path = require('path');
-const readline = require('readline');
-let data = '';
-const header = '```Javascript';
-const footer = '```';
+const fs = require("fs");
+const path = require("path");
+const readline = require("readline");
+let newLine = "";
+const header = "```Javascript";
+const footer = "```";
+let data = []
+data[0] = '```Javascript'
 
 const inputReader = readline.createInterface({
   input: fs.createReadStream(path.resolve(process.argv[2]))
 });
 
-inputReader.on('line', line => {
-  console.log(line);
-  line = line.split(':');
-
-  line.forEach(word => {
-    console.log(data);
-    if (word === 'True' || word === 'False'){
-      data = data + '\n';
+inputReader.on("line", line => {
+  if (!line.includes("true") && !line.includes("false")) {
+    if (line.length === 1) {
+      newLine = newLine + ":";
     } else {
-      data = data + word + ':';
+      newLine = line;
     }
-  });
-
+  } else {
+    newLine = newLine + " " + line;
+    data.push(newLine);
+    newLine = '';
+  }
+  
 });
 
-inputReader.on('close', () => {
-  data = header + data + footer;
-  console.log(data);
+inputReader.on("close", () => {
+  data.push('```');
+  console.log(Object.values(data).forEach(l => console.log(l)));
 });
